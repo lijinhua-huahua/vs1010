@@ -137,36 +137,26 @@ export default {
         },
         //删除讲师
         removeDataById(id){
-          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          this.$confirm('此操作将永久删除讲师记录, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });          
-        });
+        }).then(() => {//点确定
+            teacher.deleteTeacherId(id)
+            .then(response =>{
+                //提示
+                this.$message({
+                  type: 'success',
+                  message: '删除成功!'
+                });
 
+                //回到列表页面
+                this.getList()
 
-            
-            // teacher.deleteTeacherId(id)
-            // .then(response =>{
-            //     //提示
-            //     console.log()
+            })
 
-            //     //回到列表页面
-            //     this.getList()
+        })
 
-            // })
-            // .catch(error =>{
-
-            // })
         
         }
 
